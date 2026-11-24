@@ -99,7 +99,17 @@ LexTrack models the case lifecycle as a normalized relational schema and pushes 
 
 ### Entity-relationship diagram
 
-> The diagram below is generated from the foreign keys in [`Database/schema.sql`](Database/schema.sql) and rendered natively by GitHub (Mermaid).
+The full diagram shows every table with its columns, keys, `NOT NULL` markers and composite `UNIQUE` rules. It was generated from the final database, so it matches [`Database/schema.sql`](Database/schema.sql) exactly.
+
+![LexTrack ER diagram](ER_diagram.svg)
+
+<sub>Open in full size: [SVG](ER_diagram.svg) · [PDF (for printing)](ER_diagram.pdf) · [PNG](ER_diagram.png) · Why each table is connected (R1–R32), with cardinality and solid/dashed reasoning: [ER_relationships.png](ER_relationships.png)</sub>
+
+**How to read it:** table numbers give the order in which the tables are created. R1–R32 label the 32 foreign-key relationships. A solid line is a required foreign key and a dashed line is an optional (nullable) one. Crow's feet mark the "many" side, and the lighter headers mark junction tables for M:N relationships.
+
+#### Simplified relationship view
+
+> The diagram below is generated from the same foreign keys and rendered natively by GitHub (Mermaid).
 
 ```mermaid
 erDiagram
@@ -201,6 +211,10 @@ All scripts are in the [`Database/`](Database/) folder and are numbered *file 1 
 ```text
 LexTrack – Legal Case Management System/
 ├── README.md
+├── ER_diagram.svg          # full ER diagram (vector, sharp at any zoom)
+├── ER_diagram.pdf          # same diagram, for printing
+├── ER_diagram.png          # same diagram, high-resolution image
+├── ER_relationships.png    # R1–R32: cardinality and reason for every relationship
 └── Database/
     ├── schema.sql          # 1. database, 20 tables, keys, constraints, indexes
     ├── procedures.sql      # 2. 11 stored procedures (3 trigger helpers + 8 app procedures)
@@ -461,13 +475,21 @@ These are suggestions and are **not implemented**:
 - **Automated tests** that run every trigger rule against expected success and failure cases
 - **Scheduled events** that mark overdue deadlines as `Missed` and send reminders on `reminder_date`
 - **Full-text indexes** on case descriptions and documents for faster keyword search
-- An exported **ER diagram image** and **query output screenshots** for documentation
+- **Query output screenshots** for documentation
 
 ---
 
 ## 🏫 Academic Project Information
 
 LexTrack was developed as an **undergraduate Database Management Systems (DBMS) project**. It demonstrates relational schema design, integrity constraints, triggers, stored procedures, views, complex queries and transaction management on a realistic legal domain.
+
+| | |
+|---|---|
+| **Institute** | Thapar Institute of Engineering and Technology, Patiala |
+| **Course** | Database Management Systems (`COURSE_CODE`) |
+| **Instructor** | `INSTRUCTOR_NAME` |
+| **Developed by** | Harshita Shibe (`ROLL_NUMBER`) |
+| **Academic year** | 2026–27 |
 
 > The people, contact details and cases in `sample_data.sql` are for demonstration only.
 
